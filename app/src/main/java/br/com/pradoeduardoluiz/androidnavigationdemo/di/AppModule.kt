@@ -5,7 +5,9 @@ import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.InternalD
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.Navigator
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigatorImpl
 import br.com.pradoeduardoluiz.androidnavigationdemo.login.ui.login.LoginViewModel
+import br.com.pradoeduardoluiz.androidnavigationdemo.ui.dashboard.DashboardViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.details.DetailsViewModel
+import br.com.pradoeduardoluiz.androidnavigationdemo.ui.home.HomeViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.notifications.NotificationsViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.profile.ProfileViewModel
 import org.koin.core.module.dsl.viewModel
@@ -14,11 +16,11 @@ import org.koin.dsl.module
 val appModule = module {
     single<Navigator> { NavigatorImpl() }
     single<InternalDeeplink> { InternalDeeplinkImpl() }
-//    viewModel { HomeViewModel() }
-//    viewModel { DashboardViewModel() }
-    viewModel { NotificationsViewModel(navigator = get<Navigator>(), internalDeeplink = get()) }
-    viewModel { ProfileViewModel(navigator = get<Navigator>()) }
-    viewModel { DetailsViewModel(navigator = get<Navigator>()) }
+    viewModel { HomeViewModel() }
+    viewModel { DashboardViewModel() }
+    viewModel { NotificationsViewModel(internalDeeplink = get()) }
+    viewModel { ProfileViewModel() }
+    viewModel { DetailsViewModel() }
 }
 
 val loginModule = module {
