@@ -2,27 +2,22 @@ package br.com.pradoeduardoluiz.androidnavigationdemo.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigatorRouter
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigationState
+import br.com.pradoeduardoluiz.androidnavigationdemo.ui.base.BaseViewModel
 
 class DetailsViewModel(
-    private val navigator: NavigatorRouter
-) : ViewModel() {
+) : BaseViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "This is details Fragment"
     }
     val text: LiveData<String> = _text
 
-    fun pop() {
-        navigator.pop()
-    }
 
     fun backWithArguments() {
-        navigator.sendArgumentToBackStackEntry("DETAILS_RESULT" to "Result")
-        pop()
+        _navigationState.value = NavigationState.BackWithArguments
     }
 
     fun login() {
-        navigator.navigate(DetailsFragmentDirections.toLogin())
+        _navigationState.value = NavigationState.Login()
     }
 }

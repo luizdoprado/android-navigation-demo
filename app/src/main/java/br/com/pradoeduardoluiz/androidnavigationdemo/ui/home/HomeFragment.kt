@@ -1,5 +1,6 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import br.com.pradoeduardoluiz.androidnavigationdemo.MainActivity
 import br.com.pradoeduardoluiz.androidnavigationdemo.R
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigationState
 import br.com.pradoeduardoluiz.androidnavigationdemo.databinding.FragmentHomeBinding
+import br.com.pradoeduardoluiz.androidnavigationdemo.ui.base.NavigatorRoute
 
 class HomeFragment : Fragment() {
 
@@ -18,6 +22,13 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var navigator: NavigatorRoute
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        navigator = NavigatorRoute((requireActivity() as MainActivity).navigator)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +53,7 @@ class HomeFragment : Fragment() {
 
 
         binding.profile.setOnClickListener {
-            val direction = HomeFragmentDirections.toProfile()
-            findNavController().navigate(direction)
+            navigator.navigateTo(NavigationState.OpenProfile)
         }
     }
 

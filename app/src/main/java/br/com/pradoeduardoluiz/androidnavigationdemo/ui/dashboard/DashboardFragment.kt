@@ -1,5 +1,6 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import br.com.pradoeduardoluiz.androidnavigationdemo.MainActivity
 import br.com.pradoeduardoluiz.androidnavigationdemo.databinding.FragmentDashboardBinding
+import br.com.pradoeduardoluiz.androidnavigationdemo.ui.base.NavigatorRoute
 
 class DashboardFragment : Fragment() {
 
