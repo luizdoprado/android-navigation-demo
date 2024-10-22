@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -36,6 +37,11 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 }
 
@@ -54,7 +60,18 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+
+
+
+    // For Compose
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material3.android) // Material design components
+    implementation(libs.androidx.navigation.compose) // Navigation
+    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.koin)
+    implementation(libs.koin.androidx.compose) // DI to inject ViewModel to Composable
+    implementation(libs.kotlinx.serialization.json) // To pass arguments between Composables
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
