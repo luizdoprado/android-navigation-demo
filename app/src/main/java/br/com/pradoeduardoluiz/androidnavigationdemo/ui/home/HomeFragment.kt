@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import br.com.pradoeduardoluiz.androidnavigationdemo.R
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -42,8 +42,8 @@ class HomeFragment : Fragment() {
 
 
         binding.profile.setOnClickListener {
-            val direction = HomeFragmentDirections.toProfile()
-            findNavController().navigate(direction)
+//            val direction = HomeFragmentDirections.toProfile()
+            findNavController().navigate(AppRoute.Profile)
         }
     }
 

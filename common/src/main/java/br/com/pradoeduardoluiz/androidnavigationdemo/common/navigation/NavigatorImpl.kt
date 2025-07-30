@@ -34,6 +34,18 @@ class NavigatorImpl : Navigator {
         }
     }
 
+    override fun navigate(route: String) {
+        lifecycleScope?.launch(Dispatchers.Main) {
+            navController?.navigate(route)
+        }
+    }
+
+    override fun <T : Any> navigate(route: T) {
+        lifecycleScope?.launch(Dispatchers.Main) {
+            navController?.navigate(route)
+        }
+    }
+
     override fun pop() {
         lifecycleScope?.launch(Dispatchers.Main) {
             navController?.popBackStack()

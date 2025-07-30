@@ -39,5 +39,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.details.setOnClickListener {
             viewModel.openDetails()
         }
+        binding.compose.setOnClickListener {
+            viewModel.openCompose()
+        }
+        binding.secondCompose.setOnClickListener {
+            viewModel.openSecondCompose()
+        }
     }
 }
