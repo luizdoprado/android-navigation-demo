@@ -8,6 +8,7 @@ import br.com.pradoeduardoluiz.androidnavigationdemo.login.ui.login.LoginViewMod
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.details.DetailsViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.notifications.NotificationsViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.profile.ProfileViewModel
+import com.example.registration.RegistrationViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
@@ -23,4 +24,8 @@ val appModule = module {
 
 val loginModule = module {
     viewModel { LoginViewModel(navigator = get<Navigator>()) }
+}
+
+val registrationModule = module {
+    viewModel { RegistrationViewModel(navigator = get<Navigator>()) }
 }

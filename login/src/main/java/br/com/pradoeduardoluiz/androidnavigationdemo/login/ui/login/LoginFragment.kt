@@ -2,7 +2,10 @@ package br.com.pradoeduardoluiz.androidnavigationdemo.login.ui.login
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.fragment.findNavController
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.binding.viewBinding
 import br.com.pradoeduardoluiz.androidnavigationdemo.login.R
 import br.com.pradoeduardoluiz.androidnavigationdemo.login.databinding.FragmentLoginBinding
@@ -28,6 +31,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun initListeners() {
         binding.toolbar.setNavigationOnClickListener {
             viewModel.pop()
+        }
+        binding.registration.setOnClickListener {
+            val request = NavDeepLinkRequest.Builder
+                .fromUri("android-app://registration".toUri())
+                .build()
+            findNavController().navigate(request)
         }
     }
 }

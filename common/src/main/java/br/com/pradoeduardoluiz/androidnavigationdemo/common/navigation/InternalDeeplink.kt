@@ -5,8 +5,10 @@ import androidx.core.net.toUri
 
 interface InternalDeeplink {
     fun toLogin(): Uri
+    fun toRegistration(): Uri
 }
 
 class InternalDeeplinkImpl : InternalDeeplink {
     override fun toLogin() = "android-app://example.app/login".toUri()
+    override fun toRegistration() = "android-app://registration".toUri()
 }

@@ -3,6 +3,7 @@ package br.com.pradoeduardoluiz.androidnavigationdemo
 import android.app.Application
 import br.com.pradoeduardoluiz.androidnavigationdemo.di.appModule
 import br.com.pradoeduardoluiz.androidnavigationdemo.di.loginModule
+import br.com.pradoeduardoluiz.androidnavigationdemo.di.registrationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -13,7 +14,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(appModule + loginModule)
+            modules(appModule + loginModule + registrationModule)
         }
     }
 }

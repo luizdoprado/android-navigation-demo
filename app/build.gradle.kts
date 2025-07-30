@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "br.com.pradoeduardoluiz.androidnavigationdemo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "br.com.pradoeduardoluiz.androidnavigationdemo"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -43,6 +43,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":login"))
+    implementation(project(":registration"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
