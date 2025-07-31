@@ -3,21 +3,30 @@ package br.com.pradoeduardoluiz.androidnavigationdemo.ui.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.toRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.R
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.binding.viewBinding
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.Navigator
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.databinding.FragmentDetailsBinding
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.getValue
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val binding by viewBinding(FragmentDetailsBinding::bind)
     private val viewModel: DetailsViewModel by viewModel()
-    private val args by navArgs<DetailsFragmentArgs>()
+    private val navigator: Navigator by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.details.text = args.details
+        val plantDetailRoute =
+            navigator.navController().getBackStackEntry<AppRoute.Details>()
+                .toRoute<AppRoute.Details>()
+        val details = plantDetailRoute.details
+        binding.details.text = details
         initObservers()
         initListeners()
     }

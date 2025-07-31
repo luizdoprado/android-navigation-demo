@@ -3,7 +3,9 @@ package br.com.pradoeduardoluiz.androidnavigationdemo.ui.details
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigatorRouter
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.LoginRoute
 
 class DetailsViewModel(
     private val navigator: NavigatorRouter
@@ -23,6 +25,6 @@ class DetailsViewModel(
     }
 
     fun login() {
-        navigator.navigate(DetailsFragmentDirections.toLogin())
+        navigator.navigate(LoginRoute.Login)
     }
 }

@@ -23,3 +23,5 @@ rootProject.name = "AndroidNavigationDemo"
 include(":app")
 include(":common")
 include(":login")
+include(":registration")
+include(":compose")

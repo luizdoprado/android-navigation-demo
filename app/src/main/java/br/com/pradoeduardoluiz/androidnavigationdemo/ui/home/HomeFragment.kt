@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import br.com.pradoeduardoluiz.androidnavigationdemo.R
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.Navigator
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.databinding.FragmentHomeBinding
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
 
@@ -18,6 +20,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val navigator: Navigator by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +45,7 @@ class HomeFragment : Fragment() {
 
 
         binding.profile.setOnClickListener {
-            val direction = HomeFragmentDirections.toProfile()
-            findNavController().navigate(direction)
+            navigator.navigate(AppRoute.Profile)
         }
     }
 
