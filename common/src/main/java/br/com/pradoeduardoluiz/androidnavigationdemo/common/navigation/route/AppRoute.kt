@@ -26,7 +26,7 @@ sealed class AppRoute(override val route: String) : Route {
 @Serializable
 sealed class AppComposeRoute(override val route: String) : Route {
     @Serializable
-    data object FirstCompose : AppComposeRoute(route = "FirstCompose")
+    data class FirstCompose(val details: String) : AppComposeRoute(route = "FirstCompose")
 
     @Serializable
     data object SecondCompose : AppComposeRoute(route = "SecondCompose")

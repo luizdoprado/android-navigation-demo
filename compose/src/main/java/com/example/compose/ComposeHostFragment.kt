@@ -10,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.fragment
 import androidx.navigation.toRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppComposeRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
@@ -27,28 +26,28 @@ class ComposeHostFragment : Fragment() {
                 .getBackStackEntry<AppRoute.ComposeHost>()
                 .toRoute<AppRoute.ComposeHost>()
 
-            val starDestination = when (route.composeRoute) {
-                AppComposeRoute.FirstCompose.route -> AppComposeRoute.FirstCompose
-                AppComposeRoute.SecondCompose.route -> AppComposeRoute.SecondCompose
-                else -> AppComposeRoute.FirstCompose
-            }
-
-            setContent {
-                val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = starDestination) {
-                    composable<AppComposeRoute.FirstCompose> {
-                        ComposeScreen(
-                            onNavigationFragment = {
-                                findNavController().navigate(it)
-                            },
-                            onNavigationCompose = {
-                                navController.navigate(it)
-                            }
-                        )
-                    }
-                    composable<AppComposeRoute.SecondCompose> { SecondComposeScreen() }
-                }
-            }
+//            val starDestination = when (route.composeRoute) {
+//                AppComposeRoute.FirstCompose.route -> AppComposeRoute.FirstCompose
+//                AppComposeRoute.SecondCompose.route -> AppComposeRoute.SecondCompose
+//                else -> AppComposeRoute.FirstCompose
+//            }
+//
+//            setContent {
+//                val navController = rememberNavController()
+//                NavHost(navController = navController, startDestination = starDestination) {
+//                    composable<AppComposeRoute.FirstCompose> {
+//                        ComposeScreen(
+//                            onNavigationFragment = {
+//                                findNavController().navigate(it)
+//                            },
+//                            onNavigationCompose = {
+//                                navController.navigate(it)
+//                            }
+//                        )
+//                    }
+//                    composable<AppComposeRoute.SecondCompose> { SecondComposeScreen() }
+//                }
+//            }
         }
     }
 

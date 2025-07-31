@@ -10,7 +10,7 @@ import br.com.pradoeduardoluiz.androidnavigationdemo.login.ui.login.LoginViewMod
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.details.DetailsViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.notifications.NotificationsViewModel
 import br.com.pradoeduardoluiz.androidnavigationdemo.ui.profile.ProfileViewModel
-import com.example.compose.ComposeNavigationNode
+import br.com.pradoeduardoluiz.androidnavigationdemo.di.ComposeNavigationNode
 import com.example.registration.RegistrationNavigationNode
 import com.example.registration.RegistrationViewModel
 import org.koin.core.module.dsl.viewModel

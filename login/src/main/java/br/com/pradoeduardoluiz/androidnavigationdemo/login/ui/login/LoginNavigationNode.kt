@@ -9,7 +9,7 @@ class LoginNavigationNode : NavigationNode {
 
     override fun addNode(navGraphBuilder: NavGraphBuilder) {
         navGraphBuilder.apply {
-            fragment<LoginFragment, LoginRoute.Login> {}
+//            fragment<LoginFragment, LoginRoute.Login> {}
         }
     }
 }

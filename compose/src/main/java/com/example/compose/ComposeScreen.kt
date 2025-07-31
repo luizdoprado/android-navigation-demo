@@ -14,17 +14,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.findNavController
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppComposeRoute
-import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.AppRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.LoginRoute
 import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.route.Route
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComposeScreen(
-    onNavigationFragment: (Route) -> Unit,
-    onNavigationCompose: (Route) -> Unit = {}
+    details: String = "",
+    onNavigate: (Route) -> Unit = {},
 ) {
     Scaffold(
         topBar = {
@@ -46,14 +48,14 @@ fun ComposeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Welcome to the Compose Screen!",
+                text = details,
                 modifier = Modifier.padding(innerPadding)
             )
-            Button(onClick = { onNavigationFragment(LoginRoute.Login) }) {
+            Button(onClick = {}) {
                 Text(text = "Navigate Login Frament")
             }
 
-            Button(onClick = { onNavigationCompose(AppComposeRoute.SecondCompose) }) {
+            Button(onClick = { onNavigate(AppComposeRoute.SecondCompose) }) {
                 Text(text = "Navigate to Second Compose Screen")
             }
         }
@@ -65,5 +67,5 @@ fun ComposeScreen(
 fun ComposeScreenPreview() {
     // This is a preview function for the ComposeScreen.
     // It allows you to see how the UI looks in both light and dark themes.
-    ComposeScreen({}, {})
+    ComposeScreen(details = "")
 }

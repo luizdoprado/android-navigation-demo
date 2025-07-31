@@ -20,10 +20,10 @@ class ProfileViewModel(
     }
 
     fun openCompose() {
-        navigator.navigate(AppRoute.ComposeHost(AppComposeRoute.FirstCompose.route))
+        navigator.navigate(AppComposeRoute.FirstCompose("FirstCompose from Profile Fragment"))
     }
 
     fun openSecondCompose() {
-        navigator.navigate(AppRoute.ComposeHost(AppComposeRoute.SecondCompose.route))
+        navigator.navigate(AppComposeRoute.SecondCompose)
     }
 }

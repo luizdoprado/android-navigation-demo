@@ -9,7 +9,7 @@ class RegistrationNavigationNode : NavigationNode {
 
     override fun addNode(navGraphBuilder: NavGraphBuilder) {
         navGraphBuilder.apply {
-            fragment<RegistrationFragment, RegistrationRoute.Registration> {}
+//            fragment<RegistrationFragment, RegistrationRoute.Registration> {}
         }
     }
 }

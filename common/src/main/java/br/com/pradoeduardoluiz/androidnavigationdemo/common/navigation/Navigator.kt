@@ -22,5 +22,6 @@ interface NavigatorRouter {
     fun pop()
     fun popTo(destinationId: Int, inclusive: Boolean = false)
     fun <T> sendArgumentToBackStackEntry(argument: Pair<String, T>?)
+    fun navController(): NavController
 }
 

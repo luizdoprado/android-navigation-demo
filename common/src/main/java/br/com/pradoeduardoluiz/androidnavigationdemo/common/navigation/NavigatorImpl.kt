@@ -66,4 +66,6 @@ class NavigatorImpl : Navigator {
             )
         }
     }
+
+    override fun navController(): NavController = navController!!
 }
