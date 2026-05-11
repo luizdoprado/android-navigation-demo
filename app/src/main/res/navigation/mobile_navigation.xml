@@ -18,31 +18,40 @@
         android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
+        <deepLink app:uri="android-app://example.app/home" />
         <action
             android:id="@+id/to_profile"
             app:destination="@id/navigation_profile" />
         <action
             android:id="@+id/action_navigation_home_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/to_deeplink_simulator"
+            app:destination="@id/deeplinkSimulatorFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <deepLink app:uri="android-app://example.app/dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications">
+        <deepLink app:uri="android-app://example.app/notifications" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
+        <deepLink app:uri="android-app://example.app/profile" />
         <action
             android:id="@+id/to_details"
             app:destination="@id/detailsFragment" />
@@ -53,9 +62,16 @@
         android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.details.DetailsFragment"
         android:label="DetailsFragment"
         tools:layout="@layout/fragment_details">
+        <deepLink app:uri="android-app://example.app/details/{details}" />
         <argument
             android:name="details"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/deeplinkSimulatorFragment"
+        android:name="br.com.pradoeduardoluiz.androidnavigationdemo.ui.deeplink.DeeplinkSimulatorFragment"
+        android:label="Deeplink Simulator"
+        tools:layout="@layout/fragment_deeplink_simulator" />
 
 </navigation>
