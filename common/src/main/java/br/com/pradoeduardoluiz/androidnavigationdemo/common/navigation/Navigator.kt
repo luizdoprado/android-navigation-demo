@@ -1,22 +1,18 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation
 
-import android.net.Uri
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 
-interface Navigator : NavigatorBinder, NavigatorRouter
-
-interface NavigatorBinder {
-    fun bind(navController: NavController, lifecycleScope: LifecycleCoroutineScope)
-    fun unbind()
+interface Navigator : NavigatorRouter {
+    val backStack: SnapshotStateList<Any>
+    val results: SnapshotStateMap<String, Any?>
+    val currentTopLevelRoute: AppRoute
+    fun navigateToTab(route: AppRoute)
 }
 
 interface NavigatorRouter {
-    fun navigate(directions: NavDirections)
-    fun navigate(deeplink: Uri)
-    fun pop()
-    fun popTo(destinationId: Int, inclusive: Boolean = false)
-    fun <T> sendArgumentToBackStackEntry(argument: Pair<String, T>?)
+    fun navigate(route: AppRoute)
+    fun pop(): Boolean
+    fun popTo(route: AppRoute, inclusive: Boolean = false)
 }
 
