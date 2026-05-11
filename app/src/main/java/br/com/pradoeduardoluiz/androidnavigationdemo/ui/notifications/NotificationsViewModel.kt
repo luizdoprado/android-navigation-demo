@@ -1,21 +1,12 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.ui.notifications
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.InternalDeeplink
-import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.Navigator
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.AppRoute
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigatorRouter
 
 class NotificationsViewModel(
-    private val navigator: Navigator,
-    private val internalDeeplink: InternalDeeplink
+    private val navigator: NavigatorRouter
 ) : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
-
-    fun login() {
-        navigator.navigate(internalDeeplink.toLogin())
-    }
+    fun login() = navigator.navigate(AppRoute.Login)
 }
+

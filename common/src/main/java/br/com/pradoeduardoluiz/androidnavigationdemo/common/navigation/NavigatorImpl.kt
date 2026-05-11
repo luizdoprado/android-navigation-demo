@@ -1,57 +1,61 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation
 
-import android.net.Uri
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 
 class NavigatorImpl : Navigator {
 
-    private var lifecycleScope: LifecycleCoroutineScope? = null
-    private var navController: NavController? = null
+    private val topLevelRoutes: Set<AppRoute> =
+        setOf(AppRoute.Home, AppRoute.Dashboard, AppRoute.Notifications)
 
-    override fun bind(navController: NavController, lifecycleScope: LifecycleCoroutineScope) {
-        this.lifecycleScope = lifecycleScope
-        this.navController = navController
+    private val _backStack = mutableStateListOf<Any>(AppRoute.Home)
+    override val backStack: SnapshotStateList<Any> = _backStack
+
+    override val results: SnapshotStateMap<String, Any?> = mutableStateMapOf()
+
+    override val currentTopLevelRoute: AppRoute
+        get() = _backStack
+            .filterIsInstance<AppRoute>()
+            .lastOrNull { it in topLevelRoutes }
+            ?: AppRoute.Home
+
+    override fun navigate(route: AppRoute) {
+        _backStack.add(route)
     }
 
-    override fun unbind() {
-        this.lifecycleScope = null
-        this.navController = null
-    }
-
-    override fun navigate(directions: NavDirections) {
-        lifecycleScope?.launch(Dispatchers.Main) {
-            navController?.navigate(directions)
+    /**
+     * Switches to a bottom-nav tab. If the route is already in the stack, pops to it
+     * (restoring state). Otherwise clears the current tab route and pushes the new one.
+     */
+    override fun navigateToTab(route: AppRoute) {
+        val idx = _backStack.indexOfLast { it == route }
+        if (idx >= 0) {
+            while (_backStack.size > idx + 1) _backStack.removeLast()
+        } else {
+            while (_backStack.size > 1 && _backStack.last() !in topLevelRoutes) {
+                _backStack.removeLast()
+            }
+            if (_backStack.last() != route) {
+                if (_backStack.last() in topLevelRoutes) _backStack.removeLast()
+                _backStack.add(route)
+            }
         }
     }
 
-    override fun navigate(deeplink: Uri) {
-        lifecycleScope?.launch(Dispatchers.Main) {
-            navController?.navigate(deeplink)
-        }
+    override fun pop(): Boolean {
+        return if (_backStack.size > 1) {
+            _backStack.removeLast()
+            true
+        } else false
     }
 
-    override fun pop() {
-        lifecycleScope?.launch(Dispatchers.Main) {
-            navController?.popBackStack()
-        }
-    }
-
-    override fun popTo(destinationId: Int, inclusive: Boolean) {
-        lifecycleScope?.launch(Dispatchers.Main) {
-            navController?.popBackStack(destinationId, inclusive)
-        }
-    }
-
-    override fun <T> sendArgumentToBackStackEntry(argument: Pair<String, T>?) {
-        lifecycleScope?.launch(Dispatchers.Main) {
-            navController?.previousBackStackEntry?.savedStateHandle?.set(
-                argument?.first.orEmpty(),
-                argument?.second
-            )
+    override fun popTo(route: AppRoute, inclusive: Boolean) {
+        val idx = _backStack.indexOfLast { it == route }
+        if (idx >= 0) {
+            val removeFrom = if (inclusive) idx else idx + 1
+            while (_backStack.size > removeFrom) _backStack.removeLast()
         }
     }
 }

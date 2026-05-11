@@ -1,13 +1,10 @@
 package br.com.pradoeduardoluiz.androidnavigationdemo.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.AppRoute
+import br.com.pradoeduardoluiz.androidnavigationdemo.common.navigation.NavigatorRouter
 
-class HomeViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+class HomeViewModel(private val navigator: NavigatorRouter) : ViewModel() {
+    fun openProfile() = navigator.navigate(AppRoute.Profile)
+    fun openDeeplinkSimulator() = navigator.navigate(AppRoute.DeeplinkSimulator)
 }
