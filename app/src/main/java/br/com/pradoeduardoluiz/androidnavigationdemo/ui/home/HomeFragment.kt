@@ -45,6 +45,11 @@ class HomeFragment : Fragment() {
             val direction = HomeFragmentDirections.toProfile()
             findNavController().navigate(direction)
         }
+
+        binding.deeplinkSimulator.setOnClickListener {
+            val direction = HomeFragmentDirections.toDeeplinkSimulator()
+            findNavController().navigate(direction)
+        }
     }
 
     override fun onDestroyView() {
